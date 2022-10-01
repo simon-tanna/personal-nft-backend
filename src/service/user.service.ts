@@ -4,3 +4,8 @@ import UserModel, { User } from "../model/user.model";
 export const createUser = (input: Partial<User>) => {
   return UserModel.create(input);
 };
+
+// This is invoked in the verifyUserHandler function in the controller
+export const findUserById = (id: string) => {
+  return UserModel.findById(id);
+};
