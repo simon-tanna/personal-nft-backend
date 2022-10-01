@@ -2,12 +2,14 @@ import express from "express";
 import {
   createUserHandler,
   forgottenPasswordHandler,
+  resetPasswordHandler,
   verifyUserHandler,
 } from "../controller/user.controller";
 import validateResource from "../middleware/validateResource";
 import {
   createUserSchema,
   forgottenPasswordSchema,
+  resetPasswordSchema,
   verifyUserSchema,
 } from "../schema/user.schema";
 
@@ -31,6 +33,12 @@ router.post(
   "/api/users/forgotPassword",
   validateResource(forgottenPasswordSchema),
   forgottenPasswordHandler
+);
+
+router.post(
+  "/api/users/resetPassword/:id/:passwordResetCode",
+  validateResource(resetPasswordSchema),
+  resetPasswordHandler
 );
 
 export default router;

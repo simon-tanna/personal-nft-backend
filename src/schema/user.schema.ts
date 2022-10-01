@@ -34,6 +34,25 @@ export const forgottenPasswordSchema = object({
   }),
 });
 
+export const resetPasswordSchema = object({
+  params: object({
+    id: string(),
+    passwordResetCode: string(),
+  }),
+  body: object({
+    password: string({
+      required_error: "Password is required",
+    }).min(8, "Password must be at least 8 characters"),
+    passwordConfirmation: string({
+      required_error: "Password Confirmation Required",
+    }),
+  }).refine((data) => data.password === data.passwordConfirmation, {
+    message: "Passwords must match",
+    // defines path of information that is not matching
+    path: ["passwordConfirmation"],
+  }),
+});
+
 export type CreateUserInput = TypeOf<typeof createUserSchema>["body"];
 
 export type VerifyUserInput = TypeOf<typeof verifyUserSchema>["params"];
@@ -41,3 +60,6 @@ export type VerifyUserInput = TypeOf<typeof verifyUserSchema>["params"];
 export type ForgottenPasswordInput = TypeOf<
   typeof forgottenPasswordSchema
 >["body"];
+
+// This schema has both body and params
+export type ResetPasswordInput = TypeOf<typeof resetPasswordSchema>;
