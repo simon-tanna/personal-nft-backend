@@ -10,4 +10,6 @@ export const createAuthSessionSchema = object({
   }),
 });
 
-export type CreateAuthSessionInput = TypeOf<typeof createAuthSessionSchema>;
+export type CreateAuthSessionInput = TypeOf<
+  typeof createAuthSessionSchema
+>["body"];
