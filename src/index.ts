@@ -3,11 +3,14 @@ import config from "config";
 import connectDb from "./utils/connectDb";
 import log from "./utils/logger";
 import router from "./routes";
-require("dotenv").config;
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
-app.use(router)
+app.use(express.json());
+
+app.use(router);
 
 const port: number = config.get("port");
 
