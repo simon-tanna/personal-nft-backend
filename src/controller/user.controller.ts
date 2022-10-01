@@ -9,15 +9,21 @@ export const createUserHandler = async (
 ) => {
   const body = req.body;
   try {
-    // body is invoked as the input param from createUser
     const user = await createUser(body);
-
+    // body is invoked as the input param from createUser
     await sendEmail({
-      from: "test@email.com",
       to: user.email,
-      subject: "Please verify your account",
-      text: `Verification Code: ${user.verificationCode}`
+      from: "test@example.com",
+      subject: "Verify your email",
+      text: `verification code: ${user.verificationCode}. Id: ${user._id}`,
     });
+
+    // await sendEmail({
+    //   to: user.email,
+    //   from: "test@email.com",
+    //   subject: "Please verify your account",
+    //   text: `Verification Code: ${user.verificationCode}`,
+    // });
 
     return res.send("User successfully created");
   } catch (e: any) {
