@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import {
   CreateUserInput,
   ForgottenPasswordInput,
+  ResetPasswordInput,
   VerifyUserInput,
 } from "../schema/user.schema";
 import {
@@ -105,4 +106,31 @@ export const forgottenPasswordHandler = async (
   log.debug(`Password reset sent to ${user.email}`);
 
   return res.send(message);
+};
+
+export const resetPasswordHandler = async (
+  req: Request<ResetPasswordInput["params"], {}, ResetPasswordInput["body"]>,
+  res: Response
+) => {
+  const { id, passwordResetCode } = req.params;
+
+  const { password } = req.body;
+
+  const user = findUserById(id);
+
+  if (
+    !user ||
+    !user.passwordResetCode ||
+    user.passwordResetCode !== passwordResetCode
+  ) {
+    return res.status(400).send("Password could not be reset");
+  }
+
+  user.passwordResetCode = null;
+  // this does not need to be hashed due to the @pre save hook in the user model!
+  user.password = password;
+
+  await user.save();
+
+  return res.send("Successfully changed password");
 };
