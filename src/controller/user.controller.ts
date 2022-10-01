@@ -18,13 +18,6 @@ export const createUserHandler = async (
       text: `verification code: ${user.verificationCode}. Id: ${user._id}`,
     });
 
-    // await sendEmail({
-    //   to: user.email,
-    //   from: "test@email.com",
-    //   subject: "Please verify your account",
-    //   text: `Verification Code: ${user.verificationCode}`,
-    // });
-
     return res.send("User successfully created");
   } catch (e: any) {
     // returns error if email is not unique
@@ -34,3 +27,6 @@ export const createUserHandler = async (
     return res.status(500).send(e.message);
   }
 };
+
+// function that handles verification code returned to user
+export const verifyUserHandler = async (req: Request, res: Response) => {};
