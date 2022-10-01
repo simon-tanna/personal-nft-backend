@@ -5,6 +5,7 @@ import {
   Severity,
   pre,
   DocumentType,
+  index,
 } from "@typegoose/typegoose";
 // argon is a nice alternative to bcrypt
 import argon2 from "argon2";
@@ -24,6 +25,8 @@ import log from "../utils/logger";
 
   return;
 })
+// this assigns an index to the email to make findBy quicker
+@index({ email: 1 })
 // Set model options
 @modelOptions({
   schemaOptions: {
