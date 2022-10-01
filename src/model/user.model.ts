@@ -12,7 +12,7 @@ import { nanoid } from "nanoid";
 import log from "../utils/logger";
 
 // <User> class is set to get type validation in pre async function
-@pre<User>("save", async () => {
+@pre<User>("save", async function () {
   // checking if password has been modified
   if (!this.isModified("password")) {
     return;
@@ -47,8 +47,8 @@ export class User {
   @prop()
   passwordResetCode: string | null;
 
-  @prop({ default: false })
-  verifiedStatus: boolean;
+  // @prop({ default: false })
+  // verifiedStatus: boolean;
 
   // candidatePassword is the password tested against the user password
   async validatePassword(this: DocumentType<User>, candidatePassword: string) {
