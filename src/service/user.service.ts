@@ -9,3 +9,8 @@ export const createUser = (input: Partial<User>) => {
 export const findUserById = (id: string) => {
   return UserModel.findById(id);
 };
+
+// This is invoked in the forgottenPasswordHandler function in the controller
+export const findUserByEmail = (email: string) => {
+  return UserModel.findOne({ email });
+};
