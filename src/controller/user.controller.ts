@@ -31,6 +31,6 @@ export const createUserHandler = async (
     if (e.code === 11000) {
       return res.status(409).send("Account already exists");
     }
-    return res.status(500).send(e);
+    return res.status(500).send(e.message);
   }
 };

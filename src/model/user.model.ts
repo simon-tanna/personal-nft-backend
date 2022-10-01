@@ -12,7 +12,7 @@ import { nanoid } from "nanoid";
 import log from "../utils/logger";
 
 // <User> class is set to get type validation in pre async function
-@pre<User>("save", async () => {
+@pre<User>("save", async function () {
   // checking if password has been modified
   if (!this.isModified("password")) {
     return;
