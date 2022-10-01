@@ -3,8 +3,8 @@ import config from "config";
 import connectDb from "./utils/connectDb";
 import log from "./utils/logger";
 import router from "./routes";
-// import * as dotenv from "dotenv";
-// dotenv.config();
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
