@@ -1,9 +1,9 @@
-require("dotenv").config;
 import express from "express";
 import config from "config";
 import connectDb from "./utils/connectDb";
 import log from "./utils/logger";
 import router from "./routes";
+require("dotenv").config;
 
 const app = express();
 

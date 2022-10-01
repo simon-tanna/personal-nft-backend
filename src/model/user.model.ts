@@ -8,7 +8,7 @@ import {
 } from "@typegoose/typegoose";
 // argon is a nice alternative to bcrypt
 import argon2 from "argon2";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 import log from "../utils/logger";
 
 // <User> class is set to get type validation in pre async function
