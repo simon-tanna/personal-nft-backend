@@ -12,6 +12,14 @@ import argon2 from "argon2";
 import { nanoid } from "nanoid";
 import log from "../utils/logger";
 
+export const privateFields = [
+  "password",
+  "__v",
+  "verificationCode",
+  "passwordResetCode",
+  "isVerified",
+];
+
 // <User> class is set to get type validation in pre async function
 @pre<User>("save", async function () {
   // checking if password has been modified

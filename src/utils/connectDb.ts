@@ -3,7 +3,7 @@ import config from "config";
 import log from "./logger";
 
 const connectDb = async () => {
-  const dbUri = config.get<string>("dbUri");
+  const dbUri: any = process.env.ATLAS_URI;
 
   try {
     await mongoose.connect(dbUri);

@@ -134,3 +134,8 @@ export const resetPasswordHandler = async (
 
   return res.send("Successfully changed password");
 };
+
+// end point for this function will be get function in user routes
+export const getCurrentUserHandler = async (req: Request, res: Response) => {
+  return res.send(res.locals.user);
+};
