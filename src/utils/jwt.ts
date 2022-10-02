@@ -1,10 +1,9 @@
 // this utils handles the signing of jwts
 import jwt from "jsonwebtoken";
 import config from "config";
-import { object } from "zod";
 
 export const signJwt = (
-  payload: Object,
+  object: Object,
   keyName: "accessTokenPrivateKey" | "refreshTokenPrivateKey",
   options?: jwt.SignOptions | undefined
 ) => {
@@ -15,7 +14,6 @@ export const signJwt = (
 
   return jwt.sign(object, signingKey, {
     ...(options && options),
-    algorithm: "RS256",
   });
 };
 
